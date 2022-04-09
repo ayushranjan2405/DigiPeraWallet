@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Digipera</string>
+    <string name="sign_in">SIGNIN</string>
+    <string name="submit">SUBMIT</string>
+    <string name="or_sign_in">or sign in with</string>
+    <string name="welcome_message">Welcome to your own digital wallet</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="forgot_password">Forgot password?</string>
+</resources>

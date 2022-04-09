@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="w_account_history" type="id" />
+    <item name="w_rewards" type="id" />
+    <item name="w_transfer_money" type="id" />
+    <item name="w_add_dependent" type="id" />
+    <item name="w_spending_habit" type="id" />
+    <item name="w_quiz" type="id" />
+    <item name="w_activity" type="id" />
+    <item name="w_scan_n_pay" type="id" />
+    <item name="w_screen_activity" type="id"/>
+</resources>

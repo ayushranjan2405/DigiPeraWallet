@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "821987307493",
+    "project_id": "digipera-eb235",
+    "storage_bucket": "digipera-eb235.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:821987307493:android:3b337d0874c4200d7d090c",
+        "android_client_info": {
+          "package_name": "com.anzb.digipera"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "821987307493-v62u6otir84gr9q4aq9bl5cqi4eqjfr7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwJNchlhfYYsOWaVdaTMIC83Bh9KSB29A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "821987307493-v62u6otir84gr9q4aq9bl5cqi4eqjfr7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
