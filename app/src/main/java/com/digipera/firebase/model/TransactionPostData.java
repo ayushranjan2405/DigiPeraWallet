@@ -1,16 +1,22 @@
-package com.digipera.firebase;
+package com.digipera.firebase.model;
 
+import com.digipera.firebase.model.Transaction;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PostData {
+public class TransactionPostData {
 
     @SerializedName("to")
     @Expose
     private String to;
+
     @SerializedName("data")
     @Expose
-    private Data data;
+    private Transaction transaction;
+
+    @SerializedName("message_id")
+    @Expose
+    private String messageId;
 
     @SerializedName("priority")
     @Expose
@@ -24,12 +30,20 @@ public class PostData {
         this.to = to;
     }
 
-    public Data getData() {
-        return data;
+    public Transaction getTransaction() {
+        return transaction;
     }
 
-    public void setData(Data data) {
-        this.data = data;
+    public void setTransaction(Transaction transaction) {
+        this.transaction = transaction;
+    }
+
+    public String getMessageId() {
+        return messageId;
+    }
+
+    public void setMessageId(String messageId) {
+        this.messageId = messageId;
     }
 
     public String getPriority() {
@@ -44,7 +58,7 @@ public class PostData {
     public String toString() {
         return "PostData{" +
                 "to='" + to + '\'' +
-                ", data=" + data +
+                ", transaction=" + transaction +
                 ", priority='" + priority + '\'' +
                 '}';
     }

@@ -13,6 +13,7 @@ import com.digipera.R;
 import com.digipera.commons.Constants;
 import com.digipera.dto.User;
 import com.digipera.services.UserService;
+import com.digipera.utils.SharedPrefUtils;
 
 public class Signin extends AppCompatActivity {
 
@@ -37,6 +38,7 @@ public class Signin extends AppCompatActivity {
                 User user = UserService.authenticate(usernameStr, passwordStr);
                 if (user != null) {
                     Toast.makeText(Signin.this, "Signin SUCCESSFUL", Toast.LENGTH_SHORT).show();
+                    SharedPrefUtils.saveData(Signin.this,Constants.CURRENT_LOGIN_USER,user.getUsername());
                     Intent intent = null;
                     if (user.getRelation().equalsIgnoreCase(Constants.PARENT)) {
                         intent = new Intent(getApplicationContext(), Dashboard.class);

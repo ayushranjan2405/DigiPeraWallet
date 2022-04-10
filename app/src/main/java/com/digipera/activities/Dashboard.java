@@ -17,6 +17,8 @@ import com.digipera.dto.Account;
 import com.digipera.dto.Notification;
 import com.digipera.dto.User;
 import com.digipera.dto.Widget;
+import com.digipera.firebase.NotificationUtil;
+import com.digipera.firebase.model.Transaction;
 import com.digipera.services.AccountService;
 import com.digipera.services.WidgetsService;
 import com.digipera.utils.DateTimeUtil;
@@ -105,8 +107,19 @@ public class Dashboard extends AppCompatActivity {
 
                         case R.id.w_transfer_money:
                             Toast.makeText(Dashboard.this,"w_transfer_money",Toast.LENGTH_LONG).show();
+                            Transaction transaction = new Transaction();
+                            transaction.setTopic(Constants.TOPIC);
+                            transaction.setSender("tny");
+                            transaction.setTo("shilpi");
+                            transaction.setNotificationType(0);
+                            transaction.setAmount(100);
+                            transaction.setTime(System.currentTimeMillis());
+                            transaction.setComment("Payment");
+                            NotificationUtil.sendTransactionNotification(transaction);
+                            break;
                         case R.id.w_account_history:
                             Toast.makeText(Dashboard.this,"w_account_history",Toast.LENGTH_LONG).show();
+                            break;
                     }
                 }
             });

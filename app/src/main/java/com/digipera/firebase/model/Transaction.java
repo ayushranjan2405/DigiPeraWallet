@@ -1,16 +1,20 @@
-package com.digipera.firebase;
+package com.digipera.firebase.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Data {
-    @SerializedName("from")
+public class Transaction {
+    @SerializedName("sender")
     @Expose
-    private String from;
+    private String sender;
 
     @SerializedName("to")
     @Expose
     private String to;
+
+    @SerializedName("notificationType")
+    @Expose
+    private int notificationType;
 
     @SerializedName("type")
     @Expose
@@ -32,12 +36,12 @@ public class Data {
     @Expose
     private String topic;
 
-    public String getFrom() {
-        return from;
+    public String getSender() {
+        return sender;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
+    public void setSender(String sender) {
+        this.sender = sender;
     }
 
     public String getTo() {
@@ -88,4 +92,11 @@ public class Data {
         this.topic = topic;
     }
 
+    public int getNotificationType() {
+        return notificationType;
+    }
+
+    public void setNotificationType(int notificationType) {
+        this.notificationType = notificationType;
+    }
 }

@@ -1,5 +1,7 @@
 package com.digipera.firebase;
 
+import com.digipera.firebase.model.TransactionPostData;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -37,10 +39,9 @@ public class NotificationApiClient {
 
     public interface NotificationApiService {
 
-        @Headers({
-                "Content-Type: application/json"})
+        @Headers({"Content-Type: application/json"})
         @POST("send")
-        Call<FcmResponse> sendData(@Body PostData postData, @Header("Authorization") String token);
+        Call<FcmResponse> sendData(@Body TransactionPostData postData, @Header("Authorization") String token);
 
 
     }
