@@ -1,16 +1,19 @@
 package com.digipera.firebase.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Transaction {
+public class Transaction implements Parcelable {
     @SerializedName("sender")
     @Expose
     private String sender;
 
-    @SerializedName("to")
+    @SerializedName("receiver")
     @Expose
-    private String to;
+    private String receiver;
 
     @SerializedName("notificationType")
     @Expose
@@ -26,15 +29,62 @@ public class Transaction {
 
     @SerializedName("amount")
     @Expose
-    private int amount;
+    private String amount;
 
     @SerializedName("comment")
     @Expose
     private String comment;
 
-    @SerializedName("topic")
-    @Expose
-    private String topic;
+    public Transaction(){
+
+    }
+
+    protected Transaction(Parcel in) {
+        sender = in.readString();
+        receiver = in.readString();
+        notificationType = in.readInt();
+        type = in.readInt();
+        if (in.readByte() == 0) {
+            time = null;
+        } else {
+            time = in.readLong();
+        }
+        amount = in.readString();
+        comment = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(sender);
+        dest.writeString(receiver);
+        dest.writeInt(notificationType);
+        dest.writeInt(type);
+        if (time == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(time);
+        }
+        dest.writeString(amount);
+        dest.writeString(comment);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Transaction> CREATOR = new Creator<Transaction>() {
+        @Override
+        public Transaction createFromParcel(Parcel in) {
+            return new Transaction(in);
+        }
+
+        @Override
+        public Transaction[] newArray(int size) {
+            return new Transaction[size];
+        }
+    };
 
     public String getSender() {
         return sender;
@@ -44,12 +94,12 @@ public class Transaction {
         this.sender = sender;
     }
 
-    public String getTo() {
-        return to;
+    public String getReceiver() {
+        return receiver;
     }
 
-    public void setTo(String to) {
-        this.to = to;
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
     }
 
     public int getType() {
@@ -68,11 +118,11 @@ public class Transaction {
         this.time = time;
     }
 
-    public int getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
@@ -82,14 +132,6 @@ public class Transaction {
 
     public void setComment(String comment) {
         this.comment = comment;
-    }
-
-    public String getTopic() {
-        return topic;
-    }
-
-    public void setTopic(String topic) {
-        this.topic = topic;
     }
 
     public int getNotificationType() {

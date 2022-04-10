@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.digipera.DigiperaApplication;
 import com.digipera.R;
 import com.digipera.commons.Constants;
 import com.digipera.dto.User;
@@ -38,6 +39,7 @@ public class Signin extends AppCompatActivity {
                 User user = UserService.authenticate(usernameStr, passwordStr);
                 if (user != null) {
                     Toast.makeText(Signin.this, "Signin SUCCESSFUL", Toast.LENGTH_SHORT).show();
+                    DigiperaApplication.getInstance().setCurrentUser(user);
                     SharedPrefUtils.saveData(Signin.this,Constants.CURRENT_LOGIN_USER,user.getUsername());
                     Intent intent = null;
                     if (user.getRelation().equalsIgnoreCase(Constants.PARENT)) {

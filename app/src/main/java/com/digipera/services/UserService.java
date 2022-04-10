@@ -34,8 +34,7 @@ public class UserService {
     }
 
     private static User getUser(String username) {
-        UserData userData = new UserData();
-        return userData.getUser(username.toLowerCase());
+        return UserData.getInstance().getUser(username.toLowerCase());
     }
 
 }

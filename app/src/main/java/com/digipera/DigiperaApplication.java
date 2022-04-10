@@ -8,15 +8,18 @@ import android.os.Build;
 import com.digipera.commons.Constants;
 import com.digipera.dto.User;
 import com.digipera.firebase.NotificationUtil;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 
 public class DigiperaApplication extends Application {
     private static DigiperaApplication singleton;
 
-    public DigiperaApplication getInstance(){
+    public static DigiperaApplication getInstance(){
         return singleton;
     }
 
     private User currentUser;
+    private FirebaseFirestore db;
 
     @Override
     public void onCreate() {
@@ -24,6 +27,7 @@ public class DigiperaApplication extends Application {
         singleton = this;
         NotificationUtil.subscribeTopic(Constants.TOPIC);
         createNotificationChannel();
+        setupFirestoreDB();
     }
 
     private void createNotificationChannel() {
@@ -48,5 +52,17 @@ public class DigiperaApplication extends Application {
 
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
+    }
+
+    public FirebaseFirestore getDb() {
+        return db;
+    }
+
+    public void setupFirestoreDB() {
+        db = FirebaseFirestore.getInstance();
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(true)
+                .build();
+        db.setFirestoreSettings(settings);
     }
 }

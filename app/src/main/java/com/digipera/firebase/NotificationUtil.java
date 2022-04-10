@@ -4,6 +4,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.digipera.commons.Constants;
 import com.digipera.firebase.model.Transaction;
 import com.digipera.firebase.model.TransactionPostData;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -27,10 +28,10 @@ public class NotificationUtil {
         });
     }
 
-    public static void sendTransactionNotification(Transaction transaction) {
+    public static void sendTransactionNotification(Transaction transaction, NotificationSendListener notificationSendListener) {
         TransactionPostData postData = new TransactionPostData();
         postData.setTransaction(transaction);
-        postData.setTo("/topics/"+transaction.getTopic());
+        postData.setTo("/topics/"+ Constants.TOPIC);
        // postData.setMessageId(System.currentTimeMillis()+"");
         postData.setPriority("high");
 
@@ -43,13 +44,20 @@ public class NotificationUtil {
                 } else {
                     FcmResponse fcmResponse = (FcmResponse) response.body();
                     Log.e("Notification", ""+fcmResponse.getMessageId());
+                    notificationSendListener.onSuccess();
                 }
             }
             @Override
             public void onFailure(Call call, Throwable t) {
                 Log.e("Notification", "onFailure");
+                notificationSendListener.onError();
             }
         });
+    }
+
+    public interface NotificationSendListener{
+        void onSuccess();
+        void onError();
     }
 
 }

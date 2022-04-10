@@ -7,4 +7,5 @@
     <string name="hint_username">Username</string>
     <string name="hint_password">Password</string>
     <string name="forgot_password">Forgot password?</string>
+    <string name="generic_error">Somthing went wrong. Please try again later</string>
 </resources>

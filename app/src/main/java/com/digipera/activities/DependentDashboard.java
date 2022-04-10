@@ -2,6 +2,7 @@ package com.digipera.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -73,7 +74,23 @@ public class DependentDashboard extends AppCompatActivity {
         //Get the linear layout for widgets
         LinearLayout widgetsLayout = findViewById(R.id.widgets);
         List<View> widgetViews = WidgetView.getWidgetViews(this, widgetsLayout, widgets.subList(0,4));
-        widgetViews.forEach(widgetsLayout::addView);
+
+        for (View view: widgetViews ) {
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int widgetType = (int) v.getTag();
+                    Intent intent;
+                    switch (widgetType){
+                        case R.id.w_account_history:
+                            intent = new Intent(getApplicationContext(), HistoryActivity.class);
+                            startActivity(intent);
+                            break;
+                    }
+                }
+            });
+            widgetsLayout.addView(view);
+        }
 
         LinearLayout widgetsLayout2 = findViewById(R.id.widgets2);
         List<View> widgetViews2 = WidgetView.getWidgetViews(this, widgetsLayout2, widgets.subList(4,7));

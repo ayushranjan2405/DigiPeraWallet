@@ -49,7 +49,7 @@
         android:drawablePadding="20dp"
         android:hint="@string/hint_username"
         android:padding="20dp"
-        android:text="shilpi"
+        android:text="ishita"
         android:textColor="@color/white"
         android:textColorHint="@color/white" />
 
